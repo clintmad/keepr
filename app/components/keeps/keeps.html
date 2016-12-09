@@ -11,7 +11,7 @@
 	</div>
 	<div class="gallery">
 
-		<div class="col-sm-3" style="margin: .6em 0;" ng-repeat="keep in $ctrl.keeps | filter: $ctrl.query">
+		<div class="col-sm-3" style="margin: .6em 0;" ng-repeat="keep in $ctrl.keeps | filter: $ctrl.query" ng-show="keep.public">
 			<div class="keep">
 				<div class="keep-img">
 					<img ng-src="{{keep.imgUrl}}" alt="Image title">
@@ -30,8 +30,8 @@
 						<hr>
 						<p class="text-center">
 							<a class="btn btn-theme" role="button" ng-click="$ctrl.onKeepClick(keep)">K</a>
-							<a class="btn btn-default" role="button"><i class="fa fa-share"></i></a>
-							<a class="btn btn-info" role="button" href="{{keep.link}}" target="_blank"><i class="fa fa-eye"></i></a>
+							<a class="btn btn-default" role="button" ng-click="$ctrl.onShareClick(keep)"><i class="fa fa-share"></i></a>
+							<a class="btn btn-info" role="button" href="{{keep.link}}" target="_blank" ng-click="$ctrl.onLinkClick(keep)"><i class="fa fa-eye"></i></a>
 						</p>
 					</div>
 				</div>

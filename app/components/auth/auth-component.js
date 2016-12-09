@@ -1,43 +1,47 @@
-(function() {
+(function () {
 
     angular.module('ng-firebase-auth', [])
         .component('authComponent', {
             templateUrl: 'app/components/auth/auth.html',
             controller: AuthController
         })
-        .factory('User', function(DS) {
+        .factory('User', function (DS) {
 
-						
+
             return DS.defineResource({
                 name: 'user',
                 endpoint: 'users',
-								relations: {
-									hasMany: {
-										keep: {
-											localField: 'keeps',
-											localKey: 'userId'
-										}
-									}
-								}
+                relations: {
+                    hasMany: {
+                        keep: {
+                            localField: 'keeps',
+                            localKey: 'userId'
+                        },
+                        vault: {
+                            localField: 'vaults',
+                            localKey: 'userId'
+                        }
+                    }
+                }
             });
 
         })
-        .factory('AuthService', function(DSFirebaseAdapter, User) {
+        .factory('AuthService', function (DSFirebaseAdapter, User) {
             var db = DSFirebaseAdapter.ref;
             var _member = {}
             return {
                 register: register,
                 login: login,
-                logout: function() {
+                logout: function () {
                     db.unauth();
                     _member = {};
                 },
                 getMember: authMember,
-                getAuth: function() {
+                getAuth: function () {
                     return db.getAuth()
                 }
             }
-            
+
             function authMember() {
                 var authData = db.getAuth();
                 if (!authData) {
@@ -48,8 +52,8 @@
             }
 
             function setMember(id) {
-                return User.find(id).then(function(member) {
-                    Object.keys(member).forEach(function(k) {
+                return User.find(id).then(function (member) {
+                    Object.keys(member).forEach(function (k) {
                         _member[k] = member[k]
                     })
                 })
@@ -66,7 +70,7 @@
             }
 
             function login(user, cb) {
-                db.authWithPassword(user, function(err, authData) {
+                db.authWithPassword(user, function (err, authData) {
                     if (err) {
                         return cb(null, err)
                     }
@@ -74,7 +78,7 @@
                 })
             }
             function register(user, cb) {
-                db.createUser(user, function(err, authData) {
+                db.createUser(user, function (err, authData) {
                     if (err) {
                         return cb(null, err)
                     }
@@ -87,17 +91,17 @@
     function AuthController($scope, $state, AuthService) {
         var ac = this;
         ac.member = AuthService.getMember();
-        ac.login = function() {
+        ac.login = function () {
             clearErr();
             AuthService.login(ac.auth, handleDBResponse);
         };
 
-        ac.register = function() {
+        ac.register = function () {
             clearErr();
             AuthService.register(ac.auth, handleDBResponse);
         };
 
-        ac.logout = function() {
+        ac.logout = function () {
             clearErr();
             AuthService.logout();
             ac.member = {};
@@ -114,8 +118,8 @@
             if (member) {
                 ac.member = member;
                 ac.activeView = ''
-            } 
-            if(err) {
+            }
+            if (err) {
                 ac.error = err.message;
             }
             update()

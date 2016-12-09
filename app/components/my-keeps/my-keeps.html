@@ -1,33 +1,62 @@
-<div class="add-keep-form">
-	<form class="form" ng-submit="$ctrl.addKeep($ctrl.newKeep)">
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Title" ng-model="$ctrl.newKeep.title">
-		</div>
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Image Url" ng-model="$ctrl.newKeep.imgUrl">
-		</div>
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Link to Article" ng-model="$ctrl.newKeep.link">
-		</div>
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Tags" ng-model="$ctrl.newKeep.tags">
-		</div>
-		<div class="form-group">
-			<label for="public">Mark as Public?</label>
-			<input type="checkbox" class="form-control" ng-model="$ctrl.newKeep.public">
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<button class="btn btn-theme btn-block" type="submit">Keep</button>
-			</div>
-			<div class="col-sm-6">
-				<button class="btn btn-info btn-block" type="reset">Reset</button>
-			</div>
-		</div>
-	</form>
-</div>
 
-<div class="my-keeps">
-	<h2>This is a place where you can manage your individual keeps</h2>
-	{{$ctrl.myKeeps}}
-</div>
+	<div class="add-keep-form">
+		<form class="form" ng-submit="$ctrl.addKeep($ctrl.newKeep)">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Title" ng-model="$ctrl.newKeep.title">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Image Url" ng-model="$ctrl.newKeep.imgUrl">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Link to Article" ng-model="$ctrl.newKeep.link">
+			</div>
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Tags" ng-model="$ctrl.newKeep.tags">
+			</div>
+			<div class="form-group">
+				<label for="public">Mark as Public?</label>
+				<input type="checkbox" class="form-control" ng-model="$ctrl.newKeep.public">
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<button class="btn btn-theme btn-block" type="submit">Keep</button>
+				</div>
+				<div class="col-sm-6">
+					<button class="btn btn-info btn-block" type="reset">Reset</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="my-keeps">
+		<h2>This is a place where you can manage your individual keeps</h2>
+	</div>
+
+	<div class=" row gallery">
+		<div class="col-sm-3" style="margin: .6em 0;" ng-repeat="myKeep in $ctrl.myKeeps | filter: $ctrl.query">
+			<div class="myKeep">
+				<div class="keep-img">
+					<img ng-src="{{myKeep.imgUrl}}" alt="Image title">
+				</div>
+				<div class="-details">
+					<hr>
+					<div class="highlights text-muted text-center">
+						<span><span class="theme-font">k:</span>{{myKeep.keepCount}}</span>
+						<span><i class="fa fa-share"></i>: {{myKeep.shareCount}}</span>
+						<span><i class="fa fa-eye"></i>: {{myKeep.viewCount}}</span>
+					</div>
+					<hr>
+					<h3>{{myKeep.title}}</h3>
+					<div class="caption">
+						<p>{{myKeep.body}}</p>
+						<hr>
+						<p class="text-center">
+							<a class="btn btn-theme" role="button" ng-click="$ctrl.onKeepClick(myKeep)">K</a>
+							<a class="btn btn-default" role="button" ng-click="$ctrl.onShareClick(myKeep)"><i class="fa fa-share"></i></a>
+							<a class="btn btn-info" role="button" href="{{myKeep.link}}" target="_blank" ng-click="$ctrl.onLinkClick(myKeep)"><i class="fa fa-eye"></i></a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
