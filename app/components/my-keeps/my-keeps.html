@@ -39,7 +39,7 @@
 					<img ng-src="{{myKeep.imgUrl}}" alt="Image title">
 						<p class="text-center hide-me">
 							<a class="btn btn-theme" role="button" ng-click="$ctrl.onKeepClick(myKeep)">K</a>
-							<a class="btn btn-default" role="button" ng-click="$ctrl.onShareClick(myKeep)"><i class="fa fa-share"></i></a>
+							<a class="btn btn-default" role="button" href="https://www.facebook.com/sharer/sharer.php?u={{myKeep.link}};src=sdkpreparse" ng-click="$ctrl.onShareClick(myKeep)"><i class="fa fa-share"></i></a>
 							<a class="btn btn-info" role="button" href="{{myKeep.link}}" target="_blank" ng-click="$ctrl.onLinkClick(myKeep)"><i class="fa fa-eye"></i></a>
 						</p>
 				</div>

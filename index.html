@@ -10,6 +10,14 @@
 </head>
 
 <body>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 	<auth-component></auth-component>
 	<div class="content">
@@ -34,7 +42,7 @@
 	<script src="app/components/keeps/keeps-component.js"></script>
 	<script src="app/components/my-keeps/my-keeps.js"></script>
 	<script src="app/components/vaults/vaults.js"></script>
-	
+
 
 
 </body>
