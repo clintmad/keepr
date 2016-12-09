@@ -14,7 +14,7 @@
     })
 
     kc.onKeepClick = function (keep) {
-      keep.keepCount++
+      keep.keepCount++      
     }
 
     kc.onShareClick = function (keep) {

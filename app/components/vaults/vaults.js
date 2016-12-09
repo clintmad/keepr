@@ -5,15 +5,18 @@
       controller: VaultsController
     })
 
-  function VaultsController (Models, AuthService) {
-    var vc = this
+  function VaultsController(Models, AuthService) {
+   var vc = this
 
-    vc.addVault = function(vault){
-    debugger
-     vault.userId = vc.user.uid
-     Models.Vaults.create(vault)
+   vc.member = AuthService.getMember()
+
+   vc.addVault = function (newVault) {
+     debugger
+     newVault.userId = vc.member.id
+     vc.member.vaults = vc.member.vaults || []
+     vc.member.vaults.push(newVault)
      vc.newVault = null
-    }
+   }
 
     this.$onInit = function () {
 

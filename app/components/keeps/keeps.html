@@ -11,10 +11,15 @@
 	</div>
 	<div class="gallery">
 
-		<div class="col-sm-3" style="margin: .6em 0;" ng-repeat="keep in $ctrl.keeps | filter: $ctrl.query" ng-show="keep.public">
+		<div class="col-sm-3 keeper" style="margin: .6em 0;" ng-repeat="keep in $ctrl.keeps | filter: $ctrl.query" ng-show="keep.public">
 			<div class="keep">
 				<div class="keep-img">
 					<img ng-src="{{keep.imgUrl}}" alt="Image title">
+					<p class="text-center hide-me">
+						<a class="btn btn-theme" role="button" ng-click="$ctrl.onKeepClick(keep)">K</a>
+						<a class="btn btn-default" role="button" ng-click="$ctrl.onShareClick(keep)"><i class="fa fa-share"></i></a>
+						<a class="btn btn-info" role="button" href="{{keep.link}}" target="_blank" ng-click="$ctrl.onLinkClick(keep)"><i class="fa fa-eye"></i></a>
+					</p>
 				</div>
 				<div class="keep-details">
 					<hr>
@@ -28,11 +33,6 @@
 					<div class="caption">
 						<p>{{keep.body}}</p>
 						<hr>
-						<p class="text-center">
-							<a class="btn btn-theme" role="button" ng-click="$ctrl.onKeepClick(keep)">K</a>
-							<a class="btn btn-default" role="button" ng-click="$ctrl.onShareClick(keep)"><i class="fa fa-share"></i></a>
-							<a class="btn btn-info" role="button" href="{{keep.link}}" target="_blank" ng-click="$ctrl.onLinkClick(keep)"><i class="fa fa-eye"></i></a>
-						</p>
 					</div>
 				</div>
 			</div>

@@ -13,7 +13,7 @@ angular.module('keepr')
 						localKey: 'userId'
 					},
 					vault: {
-						localField: 'vault',
+						localField: 'vaults',
 						localKey: 'userId'
 					}
 				}
@@ -25,7 +25,7 @@ angular.module('keepr')
 			endpoint: 'vaults',
 			relations: {
 				belongsTo: {
-					user: {
+					member: {
 						localField: 'author',
 						localKey: 'userId'
 					}

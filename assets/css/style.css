@@ -67,3 +67,15 @@ html {
 .alert p{
 	font-size: 1.3em;
 }
+
+.keeper .hide-me {
+	position: relative;
+	bottom: 50px;
+	justify-content: center;
+	visibility: hidden;
+	margin-bottom: -50px;
+}
+
+.keeper:hover .hide-me {
+	visibility: visible;
+}

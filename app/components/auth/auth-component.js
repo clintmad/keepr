@@ -64,6 +64,7 @@
                     id: authData.uid,
                     username: user.username,
                     email: user.email,
+                    vaults: [],
                     created: Date.now()
                 }
                 User.create(member);
